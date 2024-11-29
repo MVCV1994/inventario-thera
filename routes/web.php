@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-// Ruta para la página principal (Bienvenida)
+// Ruta para la página principal (Bienvenida)//mensaje para ver si se actualizo github
 Route::get('/', function () {
     return view('welcome');
 });
