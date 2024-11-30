@@ -73,6 +73,55 @@ class AuthController extends Controller
     }
 
     /**
+     * Mostrar el formulario para editar usuarios.
+     */
+    public function showEditUsers()
+    {
+        if (Auth::check() && Auth::user()->role === 'superuser') {
+            $users = User::all(); // Obtener todos los usuarios
+            return view('edit_users', compact('users'));
+        } else {
+            return abort(403, 'No tienes permiso para acceder a esta página.');
+        }
+    }
+
+    /**
+     * Actualizar el rol de un usuario.
+     */
+    public function updateUser(Request $request)
+    {
+        // Validar los datos recibidos
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'role' => 'required|in:superuser,admin,user',
+        ]);
+
+        // Buscar al usuario y actualizar su rol
+        $user = User::find($request->user_id);
+        $user->role = $request->role;
+        $user->save();
+
+        return redirect()->route('edit.users')->with('success', 'Usuario actualizado correctamente.');
+    }
+
+    /**
+     * Eliminar un usuario.
+     */
+    public function deleteUser(Request $request)
+    {
+        // Validar los datos recibidos
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        // Buscar al usuario y eliminarlo
+        $user = User::find($request->user_id);
+        $user->delete();
+
+        return redirect()->route('edit.users')->with('success', 'Usuario eliminado correctamente.');
+    }
+
+    /**
      * Dashboard principal.
      */
     public function dashboard()

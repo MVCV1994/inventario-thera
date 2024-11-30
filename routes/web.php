@@ -193,3 +193,7 @@ Route::post('/inventory/{id}/increase', function ($id) {
 })->name('inventory.increase_quantity');
 
 
+// modificar y eliminar usuario 
+Route::get('/users/edit', [AuthController::class, 'showEditUsers'])->name('edit.users');
+Route::post('/users/update', [AuthController::class, 'updateUser'])->name('update.user');
+Route::post('/users/delete', [AuthController::class, 'deleteUser'])->name('delete.user');

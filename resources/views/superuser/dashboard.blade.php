@@ -110,10 +110,10 @@
             <div class="menu-options">
                 <ul>
                     <li><a href="{{ route('registerForm') }}">Registrar un nuevo usuario</a></li>
+                    <li><a href="{{ route('edit.users') }}">Editar Usuarios</a></li>
                     <li><a href="{{ route('inventory.index') }}">Gestionar el Inventario</a></li>
                     <li><a href="{{ route('inventory.inventario') }}">Tabla de Inventarios</a></li>
-
-                </ul>
+                                    </ul>
             </div>
 
             <!-- Botón de Cerrar Sesión -->
